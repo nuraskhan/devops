@@ -19,7 +19,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build with Maven
+      - name: Build accounts jar
+        working-directory: accounts
+        run: mvn clean package -DskipTests
+
+      - name: Build cards jar
+        working-directory: cards
         run: mvn clean package -DskipTests
 
       - name: Set up Docker Buildx
