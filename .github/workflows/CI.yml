@@ -1,0 +1,32 @@
+name: Build and Push Docker Images
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to DockerHub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+      - name: Build and Push accounts
+        run: |
+          docker build -t nuraskhan/accounts -f accounts/Dockerfile .
+          docker tag nuraskhan/accounts nuraskhan/accounts:latest
+          docker push nuraskhan/accounts:latest
+
+      - name: Build and Push cards
+        run: |
+          docker build -t nuraskhan/cards -f cards/Dockerfile .
+          docker tag nuraskhan/cards nuraskhan/cards:latest
+          docker push nuraskhan/cards:latest
