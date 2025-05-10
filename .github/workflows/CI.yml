@@ -38,5 +38,5 @@ jobs:
         working-directory: cards
         run: |
           docker build -t nuraskhan/cards .
-          docker tag nuraskhan/accounts nurascript/accounts:latest
+          docker tag nuraskhan/cards nurascript/cards:latest
           docker push nurascript/cards:latest
