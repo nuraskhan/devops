@@ -8,10 +8,6 @@ This repository contains a multi-module application with Dockerized microservice
 - [Setup and Installation](#setup-and-installation)
   - [Prerequisites](#prerequisites)
   - [Docker Setup](#docker-setup)
-  - [Building Docker Images](#building-docker-images)
-  - [Docker Compose Setup](#docker-compose-setup)
-- [CI/CD](#cicd)
-- [License](#license)
 
 ## Project Overview
 
