@@ -28,7 +28,7 @@ jobs:
         run: |
           docker build -t nuraskhan/accounts .
           docker tag nuraskhan/accounts nurascript/accounts:latest
-          docker push nuraskhan/accounts:latest
+          docker push nurascript/accounts:latest
 
       - name: Build cards jar
         working-directory: cards
@@ -39,4 +39,4 @@ jobs:
         run: |
           docker build -t nuraskhan/cards .
           docker tag nuraskhan/accounts nurascript/accounts:latest
-          docker push nuraskhan/cards:latest
+          docker push nurascript/cards:latest
