@@ -1,0 +1,13 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'accounts-app'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['accounts:8080']
+
+  - job_name: 'cards-app'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['cards:8090']
