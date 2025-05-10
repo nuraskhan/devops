@@ -13,19 +13,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build with Maven
+        run: mvn clean package -DskipTests
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
       - name: Login to DockerHub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
-      - name: Build and Push accounts
+      - name: Build and Push accounts image
         run: |
           docker build -t nuraskhan/accounts -f accounts/Dockerfile .
           docker tag nuraskhan/accounts nuraskhan/accounts:latest
           docker push nuraskhan/accounts:latest
 
-      - name: Build and Push cards
+      - name: Build and Push cards image
         run: |
           docker build -t nuraskhan/cards -f cards/Dockerfile .
           docker tag nuraskhan/cards nuraskhan/cards:latest
